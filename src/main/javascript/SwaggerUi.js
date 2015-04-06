@@ -193,7 +193,7 @@ window.SwaggerUi = Backbone.Router.extend({
   // Renders GFM for elements with 'markdown' class
   renderGFM: function(){
     $('.markdown').each(function(){
-      $(this).html(marked($(this).html()));
+      $(this).html(marked($(this).text()));
     });
   }
 

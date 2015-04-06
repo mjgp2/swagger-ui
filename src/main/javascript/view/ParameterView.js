@@ -30,17 +30,15 @@ SwaggerUi.Views.ParameterView = Backbone.View.extend({
     this.model.paramType = this.model.in || this.model.paramType;
     this.model.isBody = this.model.paramType === 'body' || this.model.in === 'body';
     this.model.isFile = type && type.toLowerCase() === 'file';
-    this.model.default = (this.model.default || this.model.defaultValue);
-
+    this.model.default = (this.model.default !== undefined && this.model.default !== null ? this.model.default.toString() : this.model.defaultValue);
     if (this.model.allowableValues) {
       this.model.isList = true;
     }
 
     var template = this.template();
     $(this.el).html(template(this.model));
-
     var signatureModel = {
-      sampleJSON: this.model.sampleJSON,
+      sampleJSON:  this.model.sampleRequestJSON,
       isParam: true,
       signature: this.model.signature
     };
